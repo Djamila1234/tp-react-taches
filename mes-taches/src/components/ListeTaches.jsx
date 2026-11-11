@@ -1,15 +1,19 @@
-export default function ListeTaches() {
+import Tache from './Tache';
+
+export default function ListeTaches({ taches }) {
+  if (!taches || taches.length === 0) {
+    return <p className="vide">Aucune tâche à afficher.</p>;
+  }
+
   return (
     <ul className="liste-taches">
-      <li className="tache terminee">
-        <span className="titre">Comprendre les composants</span>
-      </li>
-      <li className="tache">
-        <span className="titre">Apprendre JSX</span>
-      </li>
-      <li className="tache">
-        <span className="titre">Créer sa première application</span>
-      </li>
+      {taches.map((tache) => (
+        <Tache 
+          key={tache.id} 
+          titre={tache.titre} 
+          terminee={tache.terminee} 
+        />
+      ))}
     </ul>
   );
 }
