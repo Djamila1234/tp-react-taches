@@ -1,13 +1,20 @@
-export default function Tache({ titre, terminee }) {
-  // Gestion de la classe CSS et de l'icône via des opérateurs ternaires
+export default function Tache({ id, titre, terminee, onBasculer, onSupprimer }) {
   const className = terminee ? "tache terminee" : "tache";
-  const icone = terminee ? "✅" : "⏹️";
 
   return (
     <li className={className}>
-      <span className="titre">
-        {icone} {titre}
-      </span>
+      <input 
+        type="checkbox" 
+        checked={terminee} 
+        onChange={() => onBasculer(id)} 
+      />
+      <span className="titre">{titre}</span>
+      <button 
+        className="danger" 
+        onClick={() => onSupprimer(id)}
+      >
+        Supprimer
+      </button>
     </li>
   );
 }

@@ -1,6 +1,6 @@
 import Tache from './Tache';
 
-export default function ListeTaches({ taches }) {
+export default function ListeTaches({ taches, onBasculer, onSupprimer }) {
   if (!taches || taches.length === 0) {
     return <p className="vide">Aucune tâche à afficher.</p>;
   }
@@ -10,8 +10,11 @@ export default function ListeTaches({ taches }) {
       {taches.map((tache) => (
         <Tache 
           key={tache.id} 
+          id={tache.id}
           titre={tache.titre} 
           terminee={tache.terminee} 
+          onBasculer={onBasculer}
+          onSupprimer={onSupprimer}
         />
       ))}
     </ul>
